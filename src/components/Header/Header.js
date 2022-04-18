@@ -17,10 +17,7 @@ const Header = () => {
                 <Navbar.Brand className="" href="#home">
                     React-Bootstrap
                 </Navbar.Brand>
-                <Navbar.Toggle
-                    className="order-3 order-md-2"
-                    aria-controls="basic-navbar-nav"
-                />
+                <Navbar.Toggle className="order-3 order-md-2"aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse className="order-3 order-md-2" id="basic-navbar-nav">
                     <Nav className="ms-auto d-flex align-items-md-center">
                         <Nav.Link>
@@ -29,39 +26,23 @@ const Header = () => {
                             </CustomLink>
                         </Nav.Link>
                         <Nav.Link>
-                            <CustomLink
-                                as={Link}
-                                className="p-2 text-decoration-none"
-                                to="/services"
-                            >
+                            <CustomLink as={Link}className="p-2 text-decoration-none"to="/services">
                                 Services
                             </CustomLink>
                         </Nav.Link>
                         <Nav.Link>
                             {" "}
-                            <CustomLink
-                                as={Link}
-                                className="p-2 text-decoration-none"
-                                to="/checkout"
-                            >
+                            <CustomLink as={Link}className="p-2 text-decoration-none"to="/checkout">
                                 Check Out
                             </CustomLink>
                         </Nav.Link>
                         <Nav.Link>
-                            <CustomLink
-                                as={Link}
-                                className="p-2 text-decoration-none"
-                                to="/blogs"
-                            >
+                            <CustomLink as={Link}className="p-2 text-decoration-none"to="/blogs">
                                 Blogs
                             </CustomLink>
                         </Nav.Link>
                         <Nav.Link>
-                            <CustomLink
-                                as={Link}
-                                className="p-2 text-decoration-none"
-                                to="/about"
-                            >
+                            <CustomLink as={Link}className="p-2 text-decoration-none"to="/about">
                                 About
                             </CustomLink>
                         </Nav.Link>
@@ -77,14 +58,14 @@ const Header = () => {
                         <NavDropdown.Item>
                             {
                             user.photoURL? (<img src={user.photoURL} alt='profile pic'/>):
-                            (<p>User Login</p>)
+                            (<p>{user.displayName}</p>)
                             }
                         </NavDropdown.Item>
                         <NavDropdown.Item>
                         <Button className="w-100 btn btn-light text-danger" onClick={handleSignOut}>Sign out</Button>
                         </NavDropdown.Item>
                     </NavDropdown>):
-                    (<Nav.Link className="order-md-3"><Link className="nav-link" to='/login'>Sign in</Link></Nav.Link>)
+                    (<Nav.Link className="order-md-3"><Link className="nav-link" to='/login'>Log in</Link></Nav.Link>)
                 }
             </Container>
         </Navbar>

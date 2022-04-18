@@ -1,103 +1,127 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FcGoogle } from "react-icons/fc";
-import {
-  useCreateUserWithEmailAndPassword,
-  useSignInWithGoogle,
-} from "react-firebase-hooks/auth";
+import {useCreateUserWithEmailAndPassword,useSignInWithGoogle, useUpdateProfile,} from "react-firebase-hooks/auth";
 import auth from "../../Firebase/firebase.init";
 import { Link, useNavigate } from "react-router-dom";
+import './SignUp.css'
+import Loading from "../Loading/Loading";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const SignUp = () => {
-  const [signInWithGoogle, User, Loading, Error] = useSignInWithGoogle(auth);
-  const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
+    const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth,{sendEmailVerification:true});
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [showPass,setShowPass] = useState(false);
+    const [agree, setAgree] = useState(false);
     const navigate = useNavigate()
     const newName = useRef("");
     const newEmail = useRef("");
     const newPassword = useRef("");
-    const newConfirmPassword = useRef("");
+    const newConfirmPassword = useRef("")
+
+    const togglePasswordOne = () => {
+        setShowPass(!showPass)
+    }
+    const togglePasswordTwo = () => {
+        setShowPass(!showPass)
+    }
     const submitted = async (event) => {
     event.preventDefault();
     const name = newName.current.value;
     const email = newEmail.current.value;
     const password = newPassword.current.value;
     const confirmPass = newConfirmPassword.current.value;
-    if (password === confirmPass) {
-      await createUserWithEmailAndPassword(email, password);
-      console.log("hello");
-    } else {
-      alert("password did not matched");
-    }
-    if(user){
-        navigate('/login')
-    }
+        if (password === confirmPass) {
+            await createUserWithEmailAndPassword(email, password);
+            await updateProfile({displayName:name});
+            navigate('/login');
+            toast('Thank you for registration')
+          } else {
+            toast("password did not matched");
+          }
+
   };
+  if(loading || loading1){
+    return <Loading></Loading>;
+  }
+  let errorElement ;
+  if(error || error1){
+     errorElement = <p>{error?.message}{error1?.message}</p>
+  }
   return (
-    <div className="my-5">
-        <div className="container p-3">
+    <div className=" container">
+        <h1 className="text-center">Sign Up</h1>
+    <div className="w-75 mx-auto p-3">
       <Form className="my-2" onSubmit={submitted}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Name</Form.Label>
           <Form.Control
             ref={newName}
             type="name"
             placeholder="Enter your name"
+            className="py-2 fs-4"
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control ref={newEmail} type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
+          <Form.Control required className="py-2 fs-4" ref={newEmail} type="email" placeholder="Enter your email" />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+        <Form.Group className="mb-3 positionOne" controlId="formBasicPassword">
           <Form.Control
             ref={newPassword}
-            type="password"
-            placeholder="Password"
+            type={showPass ? "text" : "password"} 
+            placeholder="Enter new password "
+            className="py-2 fs-4"
+            required
           />
+          <p style={{cursor:'pointer'}} className="bg-white border-0 positionTwo" onClick={togglePasswordOne}>Show</p>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Confirm Password</Form.Label>
+        <Form.Group className="mb-3 positionOne" controlId="formBasicPassword">
           <Form.Control
             ref={newConfirmPassword}
-            type="password"
-            placeholder="Password"
+            type={showPass ? "text" : "password"}
+            placeholder="Confirm password"
+            className="py-2 fs-4"
+            required
           />
+          <p style={{cursor:'pointer'}} className="bg-white border-0  positionTwo" onClick={togglePasswordTwo}>Show</p>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
+          <Form.Check onClick={()=>{setAgree(!agree)}} type="checkbox" name="terms" label="Accept the terms and conditions" />
         </Form.Group>
+        {errorElement}
         <div className="mx-auto d-flex justify-content-center">
-        <Button className="w-50" variant="primary" type="submit">
+        <Button disabled={!agree} className="w-50 fs-4" variant="primary" type="submit">
           Sign Up
         </Button>
         </div>
       </Form>
     </div>
-    <div className="my-2 pb-5 container">
-        <div className="text-center"> <Link className="" to='/login'>Already Have an account ?</Link></div>
+    <div className="my-2 pb-5 w-75 mx-auto">
+        <div className="text-center"> <Link className="text-decoration-none" to='/login'>Already Have an account ?</Link></div>
         <div className="d-flex align-items-center">
           <div style={{ height: "1px" }} className="bg-dark w-50"></div>
           <p className="pt-3 px-3 fw-bold">OR</p>
           <div style={{ height: "1px" }} className="bg-dark w-50"></div>
         </div>
-        <div className="text-center mt-3">
+        <div className="text-center mt-3 py-1">
           <button
             onClick={() => signInWithGoogle()}
-            className="btn btn-light border"
+            className="btn btn-light"
+            style={{boxShadow:"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}}
           >
             <span className="fs-3">
               <FcGoogle></FcGoogle>
             </span>{" "}
-            <span className="fs-lg text-muted fw-bolder">
+            <span className="fs-4 text-muted">
               Continue with google
             </span>
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
