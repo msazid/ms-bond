@@ -7,6 +7,7 @@ import auth from "../../Firebase/firebase.init";
 import Loading from "../Loading/Loading";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "../Footer/Footer";
 
 const Login = memo(() => {
     const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
@@ -93,6 +94,7 @@ const Login = memo(() => {
       </div>
         </div>
       <ToastContainer/>
+      <Footer></Footer>
     </div>
   );
 });

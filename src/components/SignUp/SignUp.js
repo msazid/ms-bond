@@ -8,6 +8,7 @@ import './SignUp.css'
 import Loading from "../Loading/Loading";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "../Footer/Footer";
 
 const SignUp = () => {
     const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
@@ -119,9 +120,11 @@ const SignUp = () => {
               Continue with google
             </span>
           </button>
-        </div>
+        </div> 
+        <ToastContainer />
       </div>
-      <ToastContainer />
+     
+    <Footer></Footer>
     </div>
   );
 };

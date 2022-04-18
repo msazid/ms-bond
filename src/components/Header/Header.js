@@ -12,7 +12,7 @@ const Header = () => {
             signOut(auth);
     }
     return (
-        <Navbar expand="lg">
+        <Navbar className="sticky-top bg-light" expand="lg">
             <Container>
                 <Navbar.Brand className="" href="#home">
                     <Link style={{color:'black',textDecoration:'none'}} to="/">MR. BOND</Link>

@@ -1,6 +1,7 @@
 
 import React from "react";
 import {Button , Form } from "react-bootstrap";
+import Footer from "../Footer/Footer";
 
 const CheckOut = () => {
   return (
@@ -39,6 +40,7 @@ const CheckOut = () => {
         </Button>
       </Form>
         </div>
+        <Footer></Footer>
     </div>
   );
 };

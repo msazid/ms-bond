@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Carousel} from "react-bootstrap";
+import {Carousel} from "react-bootstrap";
 import "../css/style.css";
 import banner from "../../assets/others/person.jpg";
 import detective from "../../assets/others/aboutbanner.jpg";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import personOne from '../../assets/others/person-1.jpg'
 import personTwo from '../../assets/others/person-2.jpg'
 import personThree from '../../assets/others/person-3.jpg'
+import Footer from "../Footer/Footer";
 const Home = () => {
   return (
     <div>
@@ -24,9 +25,6 @@ const Home = () => {
                 John is here for
                 <br /> you to <span className="text-danger">help</span>
               </h1>
-              <Button className="border-0 py-3 px-2 bg-danger">
-                Explore More
-              </Button>
             </div>
           </div>
         </Carousel.Item>
@@ -158,6 +156,12 @@ const Home = () => {
   </div>
 </section>
 </div>
+    <footer class=" bg-light text-center text-lg-start">
+        <div class="text-center p-3" style={{backgroundColor:'rgba(0, 0, 0, 0.2)'}}>
+          © 2022 Copyright:
+          <Link to='/' class="text-dark">mrbond.com</Link>
+        </div>
+      </footer>
 </div>
 );
 };

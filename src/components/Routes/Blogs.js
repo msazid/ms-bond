@@ -1,5 +1,6 @@
 import React from "react";
 import { Accordion } from "react-bootstrap";
+import Footer from "../Footer/Footer";
 
 const Blogs = () => {
   return (
@@ -32,6 +33,7 @@ const Blogs = () => {
           </Accordion.Item>
         </Accordion>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

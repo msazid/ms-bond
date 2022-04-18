@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import person1 from '../../assets/others/person-1.jpg'
 import person2 from '../../assets/others/person-2.jpg'
 import murder from '../../assets/others/murder.jpg'
+import Footer from '../Footer/Footer';
 
 const Services = () => {
     return (
@@ -54,6 +55,7 @@ const Services = () => {
                 </div>
             </div>
          </div>
+         <Footer></Footer>
         </div>
     );
 };
