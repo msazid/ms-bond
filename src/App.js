@@ -7,6 +7,7 @@ import About from './components/Routes/About';
 import Blogs from './components/Routes/Blogs';
 import CheckOut from './components/Routes/CheckOut';
 import Home from './components/Routes/Home';
+import PageNotFound from './components/Routes/PageNotFound';
 import Services from './components/Routes/Services';
 import SignUp from './components/SignUp/SignUp';
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/services' element={<Services/>}></Route>
         <Route path='/signup' element={<SignUp/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
+        <Route path='*' element={<PageNotFound/>}></Route>
       </Routes>
     </div>
   );
