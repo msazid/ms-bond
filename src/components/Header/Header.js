@@ -15,7 +15,7 @@ const Header = () => {
         <Navbar expand="lg">
             <Container>
                 <Navbar.Brand className="" href="#home">
-                    React-Bootstrap
+                    <Link style={{color:'black',textDecoration:'none'}} to="/">MR. BOND</Link>
                 </Navbar.Brand>
                 <Navbar.Toggle className="order-3 order-md-2"aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse className="order-3 order-md-2" id="basic-navbar-nav">
@@ -62,10 +62,10 @@ const Header = () => {
                             }
                         </NavDropdown.Item>
                         <NavDropdown.Item>
-                        <Button className="w-100 btn btn-light text-danger" onClick={handleSignOut}>Sign out</Button>
+                        <Button className="w-100 bg-white btn btn-light text-danger" onClick={handleSignOut}>Sign out</Button>
                         </NavDropdown.Item>
                     </NavDropdown>):
-                    (<Nav.Link className="order-md-3"><Link className="nav-link" to='/login'>Log in</Link></Nav.Link>)
+                    (<Nav.Link className="order-md-3"><Link className="nav-link text-dark" to='/login'>Log in</Link></Nav.Link>)
                 }
             </Container>
         </Navbar>

@@ -93,7 +93,7 @@ const SignUp = () => {
         </Form.Group>
         {errorElement}
         <div className="mx-auto d-flex justify-content-center">
-        <Button disabled={!agree} className="w-50 fs-4" variant="primary" type="submit">
+        <Button style={{background:'#84142D',border:'none',outline:'none'}} disabled={!agree} className="w-50 fs-4" variant="primary" type="submit">
           Sign Up
         </Button>
         </div>
@@ -110,12 +110,12 @@ const SignUp = () => {
           <button
             onClick={() => signInWithGoogle()}
             className="btn btn-light"
-            style={{boxShadow:"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}}
+            style={{background:'#84142D'}}
           >
             <span className="fs-3">
               <FcGoogle></FcGoogle>
             </span>{" "}
-            <span className="fs-4 text-muted">
+            <span className="fs-4 text-light">
               Continue with google
             </span>
           </button>

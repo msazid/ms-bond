@@ -48,14 +48,15 @@ const Login = memo(() => {
         toast('Sent email')
         }
         else{
-          toast('Please enter')
+        toast('Please enter email')
         }
       }
   return (
     <div className="">
-        <h1 className="text-center my-3">Log in</h1>
-      <div className="p-3">
-      <Form onSubmit={handleLogin} className='mx-auto w-75' >
+        <h1 className="text-center my-3 text-danger">Log in</h1>
+        <div className="w-100 mx-auto">
+        <div className="p-3 container">
+      <Form onSubmit={handleLogin} className=' mx-md-auto' >
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control className="py-3" required ref={userEmail} type="email" placeholder="Enter your email" />
         </Form.Group>
@@ -65,9 +66,10 @@ const Login = memo(() => {
           <p className="border-0 bg-white" style={{position:'absolute',top:'15px',right:'5px',cursor:'pointer'}} onClick={togglePass}>Show</p>
         </Form.Group>
         {errorElement}
-        <Button className="w-25 py-2 mx-auto d-block" variant="primary" type="submit">
+        <Button style={{background:'#84142D',outline:'none'}} className="border-0 mx-auto d-block py-2" variant="primary" type="submit">
           Log in
         </Button>
+        <ToastContainer/>
       </Form>
       <div className="my-2 pb-5 w-75 mx-auto">
         <div className="text-center">New user ? <Link className="text-decoration-none" to='/signup'>Create an account</Link></div>
@@ -78,17 +80,18 @@ const Login = memo(() => {
           <div style={{ height: "1px" }} className="bg-dark w-50"></div>
         </div>
         <div className="text-center mt-3 py-1">
-          <button onClick={() => signInWithGoogle()}className="btn btn-light" >
+          <button onClick={() => signInWithGoogle()} style={{background:'#84142D'}}className="btn btn-danger" >
             <span className="fs-3">
               <FcGoogle></FcGoogle>
             </span>{" "}
-            <span className="fs-4 text-muted">
+            <span className="fs-4 text-light">
               Continue with google
             </span>
           </button>
         </div>
       </div>
       </div>
+        </div>
       <ToastContainer/>
     </div>
   );
