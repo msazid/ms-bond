@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import personOne from '../../assets/others/person-1.jpg'
 import personTwo from '../../assets/others/person-2.jpg'
 import personThree from '../../assets/others/person-3.jpg'
-import Footer from "../Footer/Footer";
 const Home = () => {
   return (
     <div>
